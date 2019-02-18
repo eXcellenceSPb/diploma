@@ -1,0 +1,497 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script language="JavaScript" th:src="@{../js/card.js}" type="text/javascript"></script>
+    <script language="JavaScript" th:src="@{../js/medical.js}" type="text/javascript"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Card List</title>
+
+
+</head>
+<!--/*@thymesVar id="card" type="com.jwt.model.Card"*/-->
+<!--/*@thymesVar id="medical" type="com.jwt.model.Medical"*/-->
+<body>
+
+<div class="container-fluid">
+    <div class="row content">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/emp">SpringBoot CRUD</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/logout" onClick="logout()"><span class="glyphicon glyphicon-user"></span> Log out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!--<div class="col-sm-2 sidenav">-->
+            <!--<h4>Menu</h4>-->
+            <!--<ul class="nav nav-pills nav-stacked ">-->
+                <!--<li><a href="/employee">Admin</a></li>-->
+                <!--<li class="active"><a href="/card">Cards</a></li>-->
+                <!--<li><a href="/emp">User</a></li>-->
+                <!--<li><a href="/medical">Medical</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <div class="col-sm-2 sidenav">
+            <h4>Menu</h4>
+            <div class="list-group">
+                <a href="/employee" class="list-group-item">Admin page</a>
+                <a href="/card" class="list-group-item active">Cards</a>
+                <a href="/medical" class="list-group-item">Medical</a>
+                <a href="/emp" class="list-group-item">User page</a>
+            </div>
+        </div>
+
+        <div class="col-sm-9">
+            <div class="container-fluid">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home">Cards table</a></li>
+                    <li><a data-toggle="tab" href="#addpage">Add new</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+
+                        <div class="container-fluid well">
+                            <input class="form-control " id="myInput" type="text" placeholder="Search..">
+                            <br>
+                            <div th:if="${not #lists.isEmpty(card)}">
+                                <div class="table-responsive">
+                                    <table class="table table-condensed table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Выдана</th>
+                                            <th>Дата выдачи</th>
+                                            <th>Имя</th>
+                                            <th>Фамилия</th>
+                                            <th>Звание</th>
+                                            <th>В/ч</th>
+                                            <th>Номер метки</th>
+                                            <th colspan=2>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="myTable">
+                                        <tr th:each="card : ${card}">
+                                            <td class="cid" th:text="${card.id}"></td>
+                                            <td class="corganisation" th:text="${card.organisation}"></td>
+                                            <td class="cdate" th:text="${card.date}"></td>
+                                            <td class="cfirstname" th:text="${card.firstname}"></td>
+                                            <td class="clastname" th:text="${card.lastname}"></td>
+                                            <td class="crank" th:text="${card.rank}"></td>
+                                            <td class="cunit" th:text="${card.unit}"></td>
+                                            <td class="cnumber" th:text="${card.number}"></td>+
+
+                                            <td><a data-toggle="modal" href="#medmodal"
+                                                   class="btn btn-success">Info</a>
+                                            </td>
+                                            <td><a data-toggle="modal" href="#myModal"
+                                                   class="edit btn btn-warning">Edit</a>
+                                            </td>
+                                            <td><a th:href="${'/card/delete/' + card.id}"
+                                                   class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="addpage" class="tab-pane fade">
+                        <div align="center" class="container-fluid well">
+
+                            <form class="form-horizontal" th:object="${cardAttribute}"
+                                  th:action="@{/card/add}" method="post">
+
+                                <div class="form-group">
+                                    <div class="col-sm-5">
+                                        <input type="hidden" class="form-control" th:field="*{id}"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Organisation:</label>
+                                    <div class="col-sm-2">
+                                        <input required="true" type="text" class="form-control"
+                                               th:field="*{organisation}"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Date:</label>
+                                    <div class="col-sm-2">
+                                        <input required="true" type="text" class="form-control" th:field="*{date}"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">First name:</label>
+                                    <div class="col-sm-2">
+                                        <input required="true" type="text" class="form-control"
+                                               th:field="*{firstname}"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Last name:</label>
+                                    <div class="col-sm-2">
+                                        <input required="true" type="text" class="form-control" th:field="*{lastname}"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Rank:</label>
+                                    <div class="col-sm-2">
+                                        <input required="true" type="text" class="form-control" th:field="*{rank}"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Unit:</label>
+                                    <div class="col-sm-2">
+                                        <input required="true" type="text" class="form-control" th:field="*{unit}"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Number:</label>
+                                    <div class="col-sm-2">
+                                        <input required="true" type="text" class="form-control" th:field="*{number}"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" data-dismiss="modal">&times;</span>
+                <h3>Edit Card</h3>
+            </div>
+
+            <form class="form-horizontal" th:object="${cardAttribute}"
+                  th:action="@{/card/edit}" method="post">
+                <table align="center">
+                    <tr>
+                        <td>
+                            <input type="hidden" class="cid form-control" id="cid" value=""
+                                   th:field="*{id}">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Organisation:</label></td>
+                        <td><input type="text" class="corganisation form-control" id="corganisation" name="organisation" value=""
+                                   th:field="*{organisation}"></td>
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Date:</label></td>
+                        <td><input required="true" type="text" class="cdate form-control" id="cdate"
+                                   name="date" value=""
+                                   th:field="*{date}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">First Name:</label></td>
+                        <td><input required="true" type="text" class="cfirstname form-control" id="cfirstname"
+                                   name="firstname"
+                                   value=""
+                                   th:field="*{firstname}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Last Name:</label></td>
+                        <td><input required="true" type="text" class="clastname form-control" id="clastname"
+                                   name="lastname"
+                                   value=""
+                                   th:field="*{lastname}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Rank:</label></td>
+                        <td><input type="text" class="crank form-control" id="crank" name="rank"
+                                   value=""
+                                   th:field="*{rank}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Unit:</label></td>
+                        <td><input type="text" class="cunit form-control" id="cunit" name="unit"
+                                   value=""
+                                   th:field="*{unit}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Number:</label></td>
+                        <td><input type="text" class="cnumber form-control" id="cnumber" name="nubmer"
+                                   value=""
+                                   th:field="*{number}">
+                        </td>
+
+                        </td></tr>
+
+                </table>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div id="medmodal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" data-dismiss="modal">&times;</span>
+                <h3>Edit Medical Card</h3>
+            </div>
+
+            <form class="form-horizontal" th:object="${medAttribute}"
+                  th:action="@{/medical/edit}" method="post">
+                <table align="center">
+                    <tr>
+                        <td>
+                            <input type="hidden" class="mid form-control" id="mid" value=""
+                                   th:field="*{id}">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Время ранения:</label></td>
+                        <td><input type="text" class="mwound_time form-control" id="mwound_time" name="wound_time" value=""
+                                   th:field="*{wound_time}"></td>
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Антибиотик:</label></td>
+                        <td><input type="text" class="mantibiotic form-control" id="mantibiotic"
+                                   name="antibiotic" value=""
+                                   th:field="*{antibiotic}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Сыворотка:</label></td>
+                        <td><input type="text" class="mserum form-control" id="mserum" name="serum"
+                                   value=""
+                                   th:field="*{serum}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Анатоксин:</label></td>
+                        <td><input type="text" class="manatoxin form-control" id="manatoxin" name="anatoxin"
+                                   value=""
+                                   th:field="*{anatoxin}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Антидот:</label></td>
+                        <td><input type="text" class="mantidot form-control" id="mantidot" name="rank"
+                                   value=""
+                                   th:field="*{antidot}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Обезболивающее:</label></td>
+                        <td><input type="text" class="manaesthetic form-control" id="manaesthetic" name="anaesthetic"
+                                   value=""
+                                   th:field="*{anaesthetic}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Произведено:</label></td>
+                        <td><input type="text" class="mcommit form-control" id="mcommit" name="commit"
+                                   value=""
+                                   th:field="*{commit}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Ранение:</label></td>
+                        <td><input type="text" class="mwound form-control" id="mwound" name="wound"
+                                   value=""
+                                   th:field="*{wound}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Место ранения:</label></td>
+                        <td><input type="text" class="mlocation form-control" id="mlocation" name="location"
+                                   value=""
+                                   th:field="*{location}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Диагноз:</label></td>
+                        <td><input type="text" class="mdiagnosis form-control" id="mdiagnosis" name="diagnosis"
+                                   value=""
+                                   th:field="*{diagnosis}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Эвакуировать:</label></td>
+                        <td><input type="text" class="mevacuation form-control" id="mevacuation" name="evacuation"
+                                   value=""
+                                   th:field="*{evacuation}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Куда эвакуировали:</label></td>
+                        <td><input type="text" class="mplace form-control" id="mplace" name="place"
+                                   value=""
+                                   th:field="*{place}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Транспорт:</label></td>
+                        <td><input type="text" class="mtransport form-control" id="mtransport" name="transport"
+                                   value=""
+                                   th:field="*{transport}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Очередь:</label></td>
+                        <td><input type="text" class="mqueue form-control" id="mqueue" name="queue"
+                                   value=""
+                                   th:field="*{queue}">
+                        </td>
+
+                        </td></tr>
+
+                    <tr>
+                        <td>
+
+                        <td><label class="control-label">Доп.инфо:</label></td>
+                        <td><input type="text" class="minfo form-control" id="minfo" name="info"
+                                   value=""
+                                   th:field="*{info}">
+                        </td>
+
+                        </td></tr>
+
+                </table>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
