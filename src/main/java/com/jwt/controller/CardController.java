@@ -62,9 +62,4 @@ public class CardController {
         return "redirect:/card";
     }
 
-    @RequestMapping(value = "/med/{id}", method = RequestMethod.GET)
-    public String getMed(@PathVariable(value = "id") Integer id){
-        medicalService.getMed(id);
-        return "redirect:/card";
-    }
 }

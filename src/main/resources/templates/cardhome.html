@@ -57,7 +57,9 @@
                     <li class="active"><a data-toggle="tab" href="#home">Cards table</a></li>
                     <li><a data-toggle="tab" href="#addpage">Add new</a></li>
                 </ul>
+
                 <div class="tab-content">
+
                     <div id="home" class="tab-pane fade in active">
 
                         <div class="container-fluid well">
@@ -88,7 +90,11 @@
                                             <td class="clastname" th:text="${card.lastname}"></td>
                                             <td class="crank" th:text="${card.rank}"></td>
                                             <td class="cunit" th:text="${card.unit}"></td>
-                                            <td class="cnumber" th:text="${card.number}"></td>+
+                                            <td class="cnumber" th:text="${card.number}"></td>
+
+                                            <td><a data-toggle="modal" href="#medmodal"
+                                                   class="btn btn-primary">New med</a>
+                                            </td>
 
                                             <td><a data-toggle="modal" href="#medmodal"
                                                    class="btn btn-success">Info</a>
@@ -104,6 +110,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
 
