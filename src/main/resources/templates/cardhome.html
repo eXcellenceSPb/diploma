@@ -61,6 +61,7 @@
                                     <table class="table table-condensed table-striped">
                                         <thead>
                                         <tr>
+                                            <th class="invisible">Id</th>
                                             <th>Выдана</th>
                                             <th>Дата выдачи</th>
                                             <th>Имя</th>
@@ -73,6 +74,7 @@
                                         </thead>
                                         <tbody id="myTable">
                                         <tr th:each="card : ${card}">
+                                            <td class="cid invisible" th:text="${card.id}"></td>
                                             <td class="corganisation" th:text="${card.organisation}"></td>
                                             <td class="cdate" th:text="${card.date}"></td>
                                             <td class="cfirstname" th:text="${card.firstname}"></td>
@@ -94,6 +96,7 @@
                                         </tr>
                                         <tfoot>
                                         <tr>
+                                            <th class="invisible">Id</th>
                                             <th>Выдана</th>
                                             <th>Дата выдачи</th>
                                             <th>Имя</th>

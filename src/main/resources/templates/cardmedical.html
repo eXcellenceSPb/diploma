@@ -56,6 +56,7 @@
                                     <table class="table table-condensed table-striped">
                                         <thead>
                                         <tr>
+                                            <th class="invisible">Id</th>
                                             <th>Время ранения</th>
                                             <th>Антибиотик</th>
                                             <th>Сыворотка</th>
@@ -76,6 +77,7 @@
                                         </thead>
                                         <tbody id="myTable2">
                                         <tr th:each="medical : ${medical}">
+                                            <td class="mid invisible" th:text="${medical.id}"></td>
                                             <td class="mwound_time" th:text="${medical.wound_time}"></td>
                                             <td class="mantibiotic" th:text="${medical.antibiotic}"></td>
                                             <td class="mserum" th:text="${medical.serum}"></td>
@@ -424,8 +426,8 @@
 
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
                 </div>
 
 

@@ -64,9 +64,9 @@ public class UsualController {
 //        return "redirect:/login?logout";
 //    }
 
-    @GetMapping(value = "403")
+    @GetMapping(value = "/error")
     public String error(){
-        return "error/403";
+        return "error";
     }
 
 }

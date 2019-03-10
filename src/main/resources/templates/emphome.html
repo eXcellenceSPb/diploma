@@ -61,7 +61,7 @@
                                     <table class="display table table-striped" style="width: 100%">
                                         <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            <th class="invisible">Id</th>
                                             <th>Имя</th>
                                             <th>Логин</th>
                                             <th>Права</th>
@@ -72,7 +72,7 @@
                                         <tbody id="myTable">
                                         <tr th:each="employee : ${employee}">
 
-                                            <td class="uid" th:text="${employee.id}"></td>
+                                            <td class="uid invisible" th:text="${employee.id}"></td>
                                             <td class="uname" th:text="${employee.name}"></td>
                                             <td class="ulogin" th:text="${employee.login}"></td>
                                             <td>
@@ -92,7 +92,7 @@
                                         </tr>
                                         <tfoot>
                                         <tr>
-                                            <th>Id</th>
+                                            <th class="invisible">Id</th>
                                             <th>Имя</th>
                                             <th>Логин</th>
                                             <th>Права</th>
