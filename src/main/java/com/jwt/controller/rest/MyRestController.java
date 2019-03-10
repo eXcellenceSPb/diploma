@@ -128,7 +128,7 @@ public class MyRestController {
         medical.setWound_time(med.getWound_time());
         medical.setAnaesthetic(med.getAnaesthetic());
         medical.setAnatoxin(med.getAnatoxin());
-        medical.setAntibiotic(med.getAntidot());
+        medical.setAntibiotic(med.getAntibiotic());
         medical.setAntidot(med.getAntidot());
         medical.setSerum(med.getSerum());
         medical.setCommit(med.getCommit());
