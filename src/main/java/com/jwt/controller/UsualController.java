@@ -52,7 +52,7 @@ public class UsualController {
         usr.add(roleService.getRoleByName("ROLE_USER"));
         employee.setRole(usr);
         employeeService.addEmployee(employee);
-        return "home";
+        return "index";
     }
 
 //    @RequestMapping(value = "/logout", method = RequestMethod.GET)
