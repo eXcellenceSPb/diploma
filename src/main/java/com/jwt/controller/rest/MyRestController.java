@@ -140,9 +140,8 @@ public class MyRestController {
         medical.setPlace(med.getPlace());
         medical.setQueue(med.getQueue());
         medical.setTransport(med.getTransport());
-        Set<Medical> medicals = new HashSet<>();
-        medicals.add(medical);
-        //добавить доавление в карточку
+        medicalService.addMed(medical);
+
     }
 
     @RequestMapping(value = "/card/{id}", method = RequestMethod.DELETE)
