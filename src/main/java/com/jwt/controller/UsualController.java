@@ -30,15 +30,9 @@ public class UsualController {
     }
 
     @GetMapping()
-    public String home(Model model, Principal principal){
-        model.addAttribute("message", "You are logged in as " + principal.getName());
+    public String home(){
         return "index";
     }
-
-//    @GetMapping(value = "/login")
-//    public String login() {
-//        return "login";
-//    }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String getAdd(Model model) {
@@ -54,15 +48,6 @@ public class UsualController {
         employeeService.addEmployee(employee);
         return "index";
     }
-
-//    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-//    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        if (auth != null) {
-//            new SecurityContextLogoutHandler().logout(request, response, auth);
-//        }
-//        return "redirect:/login?logout";
-//    }
 
     @GetMapping(value = "/error")
     public String error(){

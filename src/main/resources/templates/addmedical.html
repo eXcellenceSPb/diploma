@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script language="JavaScript" th:src="@{../js/medical.js}" type="text/javascript"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>New Medical Card</title>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row content">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/emp">Приложение</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/logout" onClick="logout()"><span class="glyphicon glyphicon-user"></span> Log out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="col-sm-2">
+            <h4>Menu</h4>
+            <div class="list-group">
+                <a href="/employee" class="list-group-item"><i class="glyphicon glyphicon-eye-open"></i> Admin page </a>
+                <a href="/card" class="list-group-item"><i class="glyphicon glyphicon-folder-open"></i> Cards</a>
+                <a href="/medical" class="list-group-item "><i class="glyphicon glyphicon-book"></i> Medical</a>
+                <a href="/emp" class="list-group-item"><i class="glyphicon glyphicon-file"></i> User page</a>
+            </div>
+        </div>
+
+        <div class="col-sm-9">
+            <div class="container-fluid">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home">Добавить новую</a></li>
+                    <li><a data-toggle="tab" href="#all">Все</a></li>
+                </ul>
+
+                <div class="tab-content">
+
+                    <div id="home" class="tab-pane fade in active">
+
+                        <div align="center" class="container-fluid well">
+
+                            <form class="form-horizontal" th:object="${medAttribute}"
+                                  th:action="@{/card/newm}" method="post">
+
+                                <div class="form-group">
+                                    <div class="col-sm-5">
+                                        <input type="hidden" class="form-control" th:field="*{id}"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Время ранения:</label>
+                                    <div class="col-sm-2">
+                                        <label>
+                                            <input type="text" class="form-control" th:field="*{wound_time}">
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Антибиотик:</label>
+                                    <div class="col-sm-2">
+                                        <label>
+                                            <input type="text" class="form-control" th:field="*{antibiotic}"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Сыворотка:</label>
+                                    <div class="col-sm-2">
+                                        <label>
+                                            <input type="text" class="form-control" th:field="*{serum}"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Анатоксин:</label>
+                                    <div class="col-sm-2">
+                                        <label>
+                                            <input type="text" class="form-control" th:field="*{anatoxin}"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Антидот:</label>
+                                    <div class="col-sm-2">
+                                        <label>
+                                            <input type="text" class="form-control" th:field="*{antidot}"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Обезболивающее:</label>
+                                    <div class="col-sm-2">
+                                        <label>
+                                            <input type="text" class="form-control" th:field="*{anaesthetic}"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Произведено:</label>
+                                    <div class="col-sm-2">
+                                        <label>
+                                            <input type="text" class="form-control" th:field="*{commit}"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Ранение:</label>
+                                    <div class="col-sm-2">
+                                        <label>
+                                            <input type="text" class="form-control" th:field="*{wound}"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Место ранения:</label>
+                                    <div class="col-sm-2">
+                                        <label>
+                                            <input type="text" class="form-control" th:field="*{location}"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Диагноз:</label>
+                                    <div class="col-sm-2">
+                                        <label>
+                                            <input type="text" class="form-control" th:field="*{diagnosis}"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Эвакуировать:</label>
+                                    <div class="col-sm-2">
+                                        <label>
+                                            <input type="text" class="form-control" th:field="*{evacuation}"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Куда эвакуировали:</label>
+                                    <div class="col-sm-2">
+                                        <label>
+                                            <input type="text" class="form-control" th:field="*{place}"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Транспорт:</label>
+                                    <div class="col-sm-2">
+                                        <label>
+                                            <input type="text" class="form-control" th:field="*{transport}"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Очередь:</label>
+                                    <div class="col-sm-2">
+                                        <label>
+                                            <input type="text" class="form-control" th:field="*{queue}"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Доп.инфо:</label>
+                                    <div class="col-sm-2">
+                                        <label>
+                                            <input type="text" class="form-control" th:field="*{info}"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-primary">Добавить</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+
+
+                    <div id="all" class="tab-pane fade">
+                        <div align="center" class="container-fluid well">
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

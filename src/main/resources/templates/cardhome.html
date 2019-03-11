@@ -83,8 +83,11 @@
                                             <td class="cunit" th:text="${card.unit}"></td>
                                             <td class="cnumber" th:text="${card.number}"></td>
 
-                                            <td><a data-toggle="modal" href="#medmodal"
-                                                   class="btn btn-primary">New med</a>
+                                            <!--<td><a data-toggle="modal" href="#medmodal"-->
+                                                   <!--class="btn btn-primary">New med</a>-->
+                                            <!--</td>-->
+                                            <td><a th:href="${'/card/newm/' + card.id}"
+                                                   class="btn btn-info">Medicals</a>
                                             </td>
 
                                             <td><a data-toggle="modal" href="#myModal"
@@ -305,7 +308,6 @@
     </div>
 </div>
 
-
 <div id="medmodal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -315,7 +317,7 @@
             </div>
 
             <form class="form-horizontal" th:object="${medAttribute}"
-                  th:action="@{/medical/edit}" method="post">
+                  th:action="@{/medical/edit/}" method="post">
 
 
                 <table align="center">

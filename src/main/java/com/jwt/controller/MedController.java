@@ -34,14 +34,6 @@ public class MedController {
         return "redirect:/medical";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String getAdd(Model model) {
-        List<Medical> medicals = medicalService.getAll();
-        model.addAttribute("medical", medicals);
-        model.addAttribute("medAttribute", new Medical());
-        return "/medical/addpage";
-    }
-
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(Medical medical) {
         medicalService.addMed(medical);

@@ -141,7 +141,7 @@ public class MyRestController {
         medicalService.addMed(medical);
     }
 
-    @RequestMapping(value = "/medToCard/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/medToCard/{id}", method = RequestMethod.PUT)
     public void addMedicalToCard(@PathVariable("id") Integer id,
                                  @RequestBody Medical med) {
         Card card = cardService.getCard(id);
