@@ -83,9 +83,6 @@
                                             <td class="cunit" th:text="${card.unit}"></td>
                                             <td class="cnumber" th:text="${card.number}"></td>
 
-                                            <!--<td><a data-toggle="modal" href="#medmodal"-->
-                                                   <!--class="btn btn-primary">New med</a>-->
-                                            <!--</td>-->
                                             <td><a th:href="${'/card/newm/' + card.id}"
                                                    class="btn btn-info">Medicals</a>
                                             </td>
@@ -132,7 +129,7 @@
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Организация:</label>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-5">
                                         <input required="true" type="text" class="form-control"
                                                th:field="*{organisation}"/>
                                     </div>
@@ -140,14 +137,14 @@
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Дата выдачи:</label>
-                                    <div class="col-sm-2">
-                                        <input required="true" type="text" class="form-control" th:field="*{date}"/>
+                                    <div class="col-sm-5">
+                                        <input required="true" type="date" class="form-control" th:field="*{date}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Имя:</label>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-5">
                                         <input required="true" type="text" class="form-control"
                                                th:field="*{firstname}"/>
                                     </div>
@@ -155,28 +152,28 @@
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Фамилия:</label>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-5">
                                         <input required="true" type="text" class="form-control" th:field="*{lastname}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Звание:</label>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-5">
                                         <input required="true" type="text" class="form-control" th:field="*{rank}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">В/ч:</label>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-5">
                                         <input required="true" type="text" class="form-control" th:field="*{unit}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Метка:</label>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-5">
                                         <input required="true" type="text" class="form-control" th:field="*{number}"/>
                                     </div>
                                 </div>
@@ -201,7 +198,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close" data-dismiss="modal">&times;</span>
-                <h3>Edit Card</h3>
+                <h3>Редактирование карточки</h3>
             </div>
 
             <form class="form-horizontal" th:object="${cardAttribute}"
@@ -219,7 +216,7 @@
                     <tr>
                         <td>
 
-                        <td><label class="control-label">Organisation:</label></td>
+                        <td><label class="control-label">Организация:</label></td>
                         <td><input type="text" class="corganisation form-control" id="corganisation" name="organisation" value=""
                                    th:field="*{organisation}"></td>
                         </td></tr>
@@ -227,8 +224,8 @@
                     <tr>
                         <td>
 
-                        <td><label class="control-label">Date:</label></td>
-                        <td><input required="true" type="text" class="cdate form-control" id="cdate"
+                        <td><label class="control-label">Дата выдачи:</label></td>
+                        <td><input required="true" type="date" class="cdate form-control" id="cdate"
                                    name="date" value=""
                                    th:field="*{date}">
                         </td>
@@ -238,7 +235,7 @@
                     <tr>
                         <td>
 
-                        <td><label class="control-label">First Name:</label></td>
+                        <td><label class="control-label">Имя:</label></td>
                         <td><input required="true" type="text" class="cfirstname form-control" id="cfirstname"
                                    name="firstname"
                                    value=""
@@ -250,7 +247,7 @@
                     <tr>
                         <td>
 
-                        <td><label class="control-label">Last Name:</label></td>
+                        <td><label class="control-label">Фамилия:</label></td>
                         <td><input required="true" type="text" class="clastname form-control" id="clastname"
                                    name="lastname"
                                    value=""
@@ -262,7 +259,7 @@
                     <tr>
                         <td>
 
-                        <td><label class="control-label">Rank:</label></td>
+                        <td><label class="control-label">Звание:</label></td>
                         <td><input type="text" class="crank form-control" id="crank" name="rank"
                                    value=""
                                    th:field="*{rank}">
@@ -273,7 +270,7 @@
                     <tr>
                         <td>
 
-                        <td><label class="control-label">Unit:</label></td>
+                        <td><label class="control-label">В/ч:</label></td>
                         <td><input type="text" class="cunit form-control" id="cunit" name="unit"
                                    value=""
                                    th:field="*{unit}">
@@ -284,7 +281,7 @@
                     <tr>
                         <td>
 
-                        <td><label class="control-label">Number:</label></td>
+                        <td><label class="control-label">Метка:</label></td>
                         <td><input type="text" class="cnumber form-control" id="cnumber" name="nubmer"
                                    value=""
                                    th:field="*{number}">
@@ -307,205 +304,6 @@
         </div>
     </div>
 </div>
-
-<div id="medmodal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close" data-dismiss="modal">&times;</span>
-                <h3>New Medical Card</h3>
-            </div>
-
-            <form class="form-horizontal" th:object="${medAttribute}"
-                  th:action="@{/medical/edit/}" method="post">
-
-
-                <table align="center">
-                    <tr>
-                        <td>
-                            <input type="hidden" class="mid form-control" id="mid" value=""
-                                   th:field="*{id}">
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-
-                        <td><label class="control-label">Время ранения:</label></td>
-                        <td><input type="text" class="mwound_time form-control" id="mwound_time" name="wound_time" value=""
-                                   th:field="*{wound_time}"></td>
-                        </td></tr>
-
-                    <tr>
-                        <td>
-
-                        <td><label class="control-label">Антибиотик:</label></td>
-                        <td><input type="text" class="mantibiotic form-control" id="mantibiotic"
-                                   name="antibiotic" value=""
-                                   th:field="*{antibiotic}">
-                        </td>
-
-                        </td></tr>
-
-                    <tr>
-                        <td>
-
-                        <td><label class="control-label">Сыворотка:</label></td>
-                        <td><input type="text" class="mserum form-control" id="mserum" name="serum"
-                                   value=""
-                                   th:field="*{serum}">
-                        </td>
-
-                        </td></tr>
-
-                    <tr>
-                        <td>
-
-                        <td><label class="control-label">Анатоксин:</label></td>
-                        <td><input type="text" class="manatoxin form-control" id="manatoxin" name="anatoxin"
-                                   value=""
-                                   th:field="*{anatoxin}">
-                        </td>
-
-                        </td></tr>
-
-                    <tr>
-                        <td>
-
-                        <td><label class="control-label">Антидот:</label></td>
-                        <td><input type="text" class="mantidot form-control" id="mantidot" name="rank"
-                                   value=""
-                                   th:field="*{antidot}">
-                        </td>
-
-                        </td></tr>
-
-                    <tr>
-                        <td>
-
-                        <td><label class="control-label">Обезболивающее:</label></td>
-                        <td><input type="text" class="manaesthetic form-control" id="manaesthetic" name="anaesthetic"
-                                   value=""
-                                   th:field="*{anaesthetic}">
-                        </td>
-
-                        </td></tr>
-
-                    <tr>
-                        <td>
-
-                        <td><label class="control-label">Произведено:</label></td>
-                        <td><input type="text" class="mcommit form-control" id="mcommit" name="commit"
-                                   value=""
-                                   th:field="*{commit}">
-                        </td>
-
-                        </td></tr>
-
-                    <tr>
-                        <td>
-
-                        <td><label class="control-label">Ранение:</label></td>
-                        <td><input type="text" class="mwound form-control" id="mwound" name="wound"
-                                   value=""
-                                   th:field="*{wound}">
-                        </td>
-
-                        </td></tr>
-
-                    <tr>
-                        <td>
-
-                        <td><label class="control-label">Место ранения:</label></td>
-                        <td><input type="text" class="mlocation form-control" id="mlocation" name="location"
-                                   value=""
-                                   th:field="*{location}">
-                        </td>
-
-                        </td></tr>
-
-                    <tr>
-                        <td>
-
-                        <td><label class="control-label">Диагноз:</label></td>
-                        <td><input type="text" class="mdiagnosis form-control" id="mdiagnosis" name="diagnosis"
-                                   value=""
-                                   th:field="*{diagnosis}">
-                        </td>
-
-                        </td></tr>
-
-                    <tr>
-                        <td>
-
-                        <td><label class="control-label">Эвакуировать:</label></td>
-                        <td><input type="text" class="mevacuation form-control" id="mevacuation" name="evacuation"
-                                   value=""
-                                   th:field="*{evacuation}">
-                        </td>
-
-                        </td></tr>
-
-                    <tr>
-                        <td>
-
-                        <td><label class="control-label">Куда эвакуировали:</label></td>
-                        <td><input type="text" class="mplace form-control" id="mplace" name="place"
-                                   value=""
-                                   th:field="*{place}">
-                        </td>
-
-                        </td></tr>
-
-                    <tr>
-                        <td>
-
-                        <td><label class="control-label">Транспорт:</label></td>
-                        <td><input type="text" class="mtransport form-control" id="mtransport" name="transport"
-                                   value=""
-                                   th:field="*{transport}">
-                        </td>
-
-                        </td></tr>
-
-                    <tr>
-                        <td>
-
-                        <td><label class="control-label">Очередь:</label></td>
-                        <td><input type="text" class="mqueue form-control" id="mqueue" name="queue"
-                                   value=""
-                                   th:field="*{queue}">
-                        </td>
-
-                        </td></tr>
-
-                    <tr>
-                        <td>
-
-                        <td><label class="control-label">Доп.инфо:</label></td>
-                        <td><input type="text" class="minfo form-control" id="minfo" name="info"
-                                   value=""
-                                   th:field="*{info}">
-                        </td>
-
-                        </td></tr>
-
-                </table>
-
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-
-
-            </form>
-
-
-        </div>
-    </div>
-</div>
-
 
 </body>
 </html>
