@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,18 +20,15 @@ import java.util.Set;
 @RequestMapping("/api/")
 public class MyRestController {
     private final PasswordEncoder passwordEncoder;
-    private final RoleService roleService;
     private final EmployeeService employeeService;
     private final CardService cardService;
     private final MedicalService medicalService;
 
     @Autowired
-    public MyRestController(RoleService roleService,
-                            EmployeeService employeeService,
+    public MyRestController(EmployeeService employeeService,
                             PasswordEncoder passwordEncoder,
                             CardService cardService,
                             MedicalService medicalService) {
-        this.roleService = roleService;
         this.employeeService = employeeService;
         this.cardService = cardService;
         this.medicalService = medicalService;
@@ -38,7 +36,7 @@ public class MyRestController {
 
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/newuser", method = RequestMethod.POST)
     public void createUser(@RequestBody Employee employee) {
         Employee add = new Employee();
         add.setName(employee.getName());
@@ -49,7 +47,7 @@ public class MyRestController {
         employeeService.addEmployee(add);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     public Employee updateUser(@PathVariable("id") Integer id,
                                @RequestBody Employee employee) {
         Employee currentEmployee = employeeService.getEmployee(id);
@@ -62,12 +60,11 @@ public class MyRestController {
         return currentEmployee;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void deleteUser(@PathVariable("id") Integer id) {
         employeeService.deleteEmployee(id);
     }
 
-    //Cards
     @RequestMapping(value = "/cards", method = RequestMethod.GET)
     public List<Card> listAllCards() {
         return cardService.getAll();
@@ -88,32 +85,43 @@ public class MyRestController {
         add.setRank(card.getRank());
         add.setUnit(card.getUnit());
         add.setNumber(card.getNumber());
-
-//        Medical medical = new Medical();
-//        medical.setWound_time(med.getWound_time());
-//        medical.setAnaesthetic(med.getAnaesthetic());
-//        medical.setAnatoxin(med.getAnatoxin());
-//        medical.setAntibiotic(med.getAntidot());
-//        medical.setAntidot(med.getAntidot());
-//        medical.setSerum(med.getSerum());
-//        medical.setCommit(med.getCommit());
-//        medical.setWound(med.getWound());
-//        medical.setDiagnosis(med.getDiagnosis());
-//        medical.setEvacuation(med.getEvacuation());
-//        medical.setInfo(med.getInfo());
-//        medical.setLocation(med.getLocation());
-//        medical.setPlace(med.getPlace());
-//        medical.setQueue(med.getQueue());
-//        medical.setTransport(med.getTransport());
-//        Set<Medical> medicals = new HashSet<>();
-//        medicals.add(medical);
-//
-//        add.setMedical(medicals);
         cardService.addCard(add);
     }
 
-    @RequestMapping(value = "/med",method = RequestMethod.POST)
-    public void createMed(@RequestBody Medical med){
+    @RequestMapping(value = "/card/{id}", method = RequestMethod.DELETE)
+    public void deleteCard(@PathVariable("id") Integer id) {
+        cardService.deleteCard(id);
+    }
+
+    @RequestMapping(value = "/card/{id}", method = RequestMethod.PUT)
+    public Card updateCard(@PathVariable("id") Integer id,
+                           @RequestBody Card card) {
+        Card updateCard = cardService.getCard(id);
+        updateCard.setDate(card.getDate());
+        updateCard.setFirstname(card.getFirstname());
+        updateCard.setLastname(card.getLastname());
+        updateCard.setOrganisation(card.getOrganisation());
+        updateCard.setRank(card.getRank());
+        updateCard.setUnit(card.getUnit());
+        updateCard.setNumber(card.getNumber());
+        if (card.getMedical() != null) {
+            updateCard.setMedical(card.getMedical());
+        }
+        return updateCard;
+    }
+
+    @RequestMapping(value = "/meds", method = RequestMethod.GET)
+    public List<Medical> getMedicals() {
+        return medicalService.getAll();
+    }
+
+    @RequestMapping(value = "/med/{id}", method = RequestMethod.GET)
+    public Medical getMedical(@PathVariable("id") Integer id) {
+        return medicalService.getMed(id);
+    }
+
+    @RequestMapping(value = "/med", method = RequestMethod.POST)
+    public void createMed(@RequestBody Medical med) {
         Medical medical = new Medical();
         medical.setWound_time(med.getWound_time());
         medical.setAnaesthetic(med.getAnaesthetic());
@@ -131,11 +139,43 @@ public class MyRestController {
         medical.setQueue(med.getQueue());
         medical.setTransport(med.getTransport());
         medicalService.addMed(medical);
-
     }
 
-    @RequestMapping(value = "/card/{id}", method = RequestMethod.DELETE)
-    public void deleteCard(@PathVariable("id") Integer id) {
-        cardService.deleteCard(id);
+    @RequestMapping(value = "/medToCard/{id}", method = RequestMethod.POST)
+    public void addMedicalToCard(@PathVariable("id") Integer id,
+                                 @RequestBody Medical med) {
+        Card card = cardService.getCard(id);
+        Medical medical = new Medical();
+        medical.setWound_time(med.getWound_time());
+        medical.setAnaesthetic(med.getAnaesthetic());
+        medical.setAnatoxin(med.getAnatoxin());
+        medical.setAntibiotic(med.getAntibiotic());
+        medical.setAntidot(med.getAntidot());
+        medical.setSerum(med.getSerum());
+        medical.setCommit(med.getCommit());
+        medical.setWound(med.getWound());
+        medical.setDiagnosis(med.getDiagnosis());
+        medical.setEvacuation(med.getEvacuation());
+        medical.setInfo(med.getInfo());
+        medical.setLocation(med.getLocation());
+        medical.setPlace(med.getPlace());
+        medical.setQueue(med.getQueue());
+        medical.setTransport(med.getTransport());
+
+        if (card.getMedical() == null) {
+            List<Medical> meds = new ArrayList<>();
+            meds.add(medical);
+            card.setMedical(meds);
+        } else {
+            medicalService.addMed(medical);
+            card.addMedical(medical);
+        }
+
+        cardService.updateCard(card);
+    }
+
+    @RequestMapping(value = "/med/{id}", method = RequestMethod.DELETE)
+    public void deleteMedical(@PathVariable("id") Integer id) {
+        medicalService.deleteMed(id);
     }
 }

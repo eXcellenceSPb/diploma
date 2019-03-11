@@ -123,6 +123,8 @@ public class Card {
         return medical;
     }
 
+    public void addMedical(Medical medicals){this.medical.add(medicals);}
+
     public void setMedical(List<Medical> medical) {
         this.medical = medical;
     }
