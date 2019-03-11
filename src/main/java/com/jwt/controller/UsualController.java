@@ -46,7 +46,7 @@ public class UsualController {
         usr.add(roleService.getRoleByName("ROLE_USER"));
         employee.setRole(usr);
         employeeService.addEmployee(employee);
-        return "index";
+        return "login";
     }
 
     @GetMapping(value = "/error")
