@@ -11,15 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/card")
 public class CardController {
     private final CardService cardService;
-
     private final MedicalService medicalService;
 
     public CardController(CardService cardService, MedicalService medicalService) {
@@ -44,12 +41,6 @@ public class CardController {
         return "redirect:/card";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String getAdd(Model model) {
-        model.addAttribute("cardAttributes", new Card());
-        return "/card/addpage";
-    }
-
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(Card card) {
         cardService.addCard(card);
@@ -61,5 +52,4 @@ public class CardController {
         cardService.updateCard(card);
         return "redirect:/card";
     }
-
 }

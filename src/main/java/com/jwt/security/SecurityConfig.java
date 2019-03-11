@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/callback")
                 .permitAll()
                 .antMatchers("/employee/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/hello", "/emp", "/card", "/medical").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+                .antMatchers("/hello", "/emp", "/card", "/medical/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
                 .anyRequest()
                 .authenticated()
                 .and()

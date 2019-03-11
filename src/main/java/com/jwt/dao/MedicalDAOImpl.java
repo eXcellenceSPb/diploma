@@ -47,11 +47,11 @@ public class MedicalDAOImpl extends AbstractDao<Integer, Medical> implements Med
     }
 
     @Override
-    public boolean isExist(String wound_time) {
+    public boolean isExist(int id) {
         Query query = getEm().createQuery("select case when count (e)>0 " +
                 "then true " +
-                "else false end from Medical e where e.wound_time =:wound_time", Boolean.class);
-        query.setParameter(wound_time, wound_time);
+                "else false end from Medical e where e.id =:id", Boolean.class);
+        query.setParameter(id, id);
         return (Boolean) query.getSingleResult();
     }
 }

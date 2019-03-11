@@ -47,7 +47,7 @@ public class MedicalServiceImpl implements MedicalService {
     }
 
     @Override
-    public boolean isExist(String wound_time) {
-        return medicalDAO.isExist(wound_time);
+    public boolean isExist(int  id) {
+        return medicalDAO.isExist(id);
     }
 }

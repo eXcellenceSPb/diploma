@@ -10,7 +10,9 @@ import com.jwt.service.MedicalService;
 import com.jwt.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class TestsUsers {
@@ -39,16 +41,16 @@ public class TestsUsers {
         roles.add(roleService.getRoleByName("ROLE_USER"));
         Employee employee = new Employee();
         employee.setRole(roles);
-        employee.setName("qwe");
-        employee.setPass("qwe");
-        employee.setLogin("qwe");
+        employee.setName("admin");
+        employee.setPass("admin");
+        employee.setLogin("admin");
         employee.setEnabled(true);
         employeeService.addEmployee(employee);
 
-        Card card = new Card("organisation","date","name","lname","rank","unit","123");
-        Medical medical = new Medical("wound_time","wound","antibiotic");
+        Card card = new Card("organisation","10/10/10","name","lname","rank","unit","123");
+        Medical medical = new Medical("10:00","ранение","антибиотик");
         medicalService.addMed(medical);
-        Set<Medical> med = new HashSet<>();
+        List<Medical> med = new ArrayList<>();
         med.add(medical);
         card.setMedical(med);
         cardService.addCard(card);

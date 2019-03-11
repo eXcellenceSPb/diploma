@@ -17,5 +17,5 @@ public interface MedicalDAO {
 
     Medical findMedByQueue(String queue);
 
-    boolean isExist(String wound_time);
+    boolean isExist(int id);
 }

@@ -1,15 +1,23 @@
 package com.jwt.dao;
 
 import com.jwt.model.Card;
+import com.jwt.model.Medical;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository("CardDAO")
 @Transactional
 public class CardDAOImpl extends AbstractDao<Integer, Card> implements CardDAO {
+
+    private MedicalDAO medicalDAO;
+
+    public CardDAOImpl() {
+        medicalDAO = null;
+    }
 
     @Override
     public void addCard(Card card) {
@@ -37,6 +45,16 @@ public class CardDAOImpl extends AbstractDao<Integer, Card> implements CardDAO {
     public Card updateCard(Card card) {
         merge(card);
         return card;
+    }
+
+    @Override
+    public void addMedtoCard(int cardId, int medId){
+        Card card = find(cardId);
+        Medical medical = medicalDAO.getMed(medId);
+        List<Medical> med = new ArrayList<>();
+        med.add(medical);
+        card.setMedical(med);
+        merge(card);
     }
 
     @Override

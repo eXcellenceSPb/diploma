@@ -18,4 +18,6 @@ public interface CardService {
     Card findCardByNum(String number);
 
     boolean isExist(String num);
+
+    void addMedtoCard(int cardId, int medId);
 }

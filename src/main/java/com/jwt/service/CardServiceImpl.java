@@ -49,4 +49,9 @@ public class CardServiceImpl implements CardService {
     public boolean isExist(String num) {
         return cardDAO.isExist(num);
     }
+
+    @Override
+    public void addMedtoCard(int cardId, int medId) {
+        cardDAO.addMedtoCard(cardId, medId);
+    }
 }

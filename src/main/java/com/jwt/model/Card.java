@@ -1,7 +1,9 @@
 package com.jwt.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -38,7 +40,7 @@ public class Card {
             joinColumns = {@JoinColumn(name = "card_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "med_id", referencedColumnName = "id")}
     )
-    private Set<Medical> medical = new HashSet<>();
+    private List<Medical> medical = new ArrayList<>();
 
     public Card() {
     }
@@ -117,11 +119,11 @@ public class Card {
         this.number = number;
     }
 
-    public Set<Medical> getMedical() {
+    public List<Medical> getMedical() {
         return medical;
     }
 
-    public void setMedical(Set<Medical> medical) {
+    public void setMedical(List<Medical> medical) {
         this.medical = medical;
     }
 

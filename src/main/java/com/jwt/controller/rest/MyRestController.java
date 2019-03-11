@@ -38,22 +38,12 @@ public class MyRestController {
 
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public List<Employee> listAllUsers() {
-        return employeeService.getAll();
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Employee getUser(@PathVariable("id") Integer id) {
-        return employeeService.getEmployee(id);
-    }
-
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public void createUser(@RequestBody Employee employee) {
         Employee add = new Employee();
         add.setName(employee.getName());
         add.setLogin(employee.getLogin());
-        add.setPass(employee.getPass());
+        add.setPass(passwordEncoder.encode(employee.getPass()));
         add.setEnabled(employee.isEnabled());
         add.setRole(employee.getRole());
         employeeService.addEmployee(add);
