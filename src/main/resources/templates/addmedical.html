@@ -9,7 +9,7 @@
     <script language="JavaScript" th:src="@{../js/medical.js}" type="text/javascript"></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>New Medical Card</title>
+    <title>Медицинская карточка пользователя</title>
 </head>
 <body>
 
@@ -21,7 +21,7 @@
                     <a class="navbar-brand" href="/emp">Приложение</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/logout" onClick="logout()"><span class="glyphicon glyphicon-user"></span> Log out</a>
+                    <li><a href="/logout" onClick="logout()"><span class="glyphicon glyphicon-user"></span> Выйти</a>
                     </li>
                 </ul>
             </div>
@@ -61,133 +61,105 @@
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Время ранения:</label>
                                     <div class="col-sm-5">
-                                            <input type="datetime-local" class="form-control" th:field="*{wound_time}">
+                                        <input type="datetime-local" class="form-control" th:field="*{wound_time}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Антибиотик:</label>
                                     <div class="col-sm-5">
-
-                                            <input type="text" class="form-control" th:field="*{antibiotic}"/>
-
+                                        <input type="text" class="form-control" th:field="*{antibiotic}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Сыворотка:</label>
                                     <div class="col-sm-5">
-
-                                            <input type="text" class="form-control" th:field="*{serum}"/>
-
+                                        <input type="text" class="form-control" th:field="*{serum}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Анатоксин:</label>
                                     <div class="col-sm-5">
-
-                                            <input type="text" class="form-control" th:field="*{anatoxin}"/>
-
+                                        <input type="text" class="form-control" th:field="*{anatoxin}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Антидот:</label>
                                     <div class="col-sm-5">
-
-                                            <input type="text" class="form-control" th:field="*{antidot}"/>
-
+                                        <input type="text" class="form-control" th:field="*{antidot}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Обезболивающее:</label>
                                     <div class="col-sm-5">
-
-                                            <input type="text" class="form-control" th:field="*{anaesthetic}"/>
-
+                                        <input type="text" class="form-control" th:field="*{anaesthetic}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Произведено:</label>
                                     <div class="col-sm-5">
-
-                                            <input type="text" class="form-control" th:field="*{commit}"/>
-
+                                        <input type="text" class="form-control" th:field="*{commit}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Ранение:</label>
                                     <div class="col-sm-5">
-
-                                            <input type="text" class="form-control" th:field="*{wound}"/>
-
+                                        <input type="text" class="form-control" th:field="*{wound}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Место ранения:</label>
                                     <div class="col-sm-5">
-
-                                            <input type="text" class="form-control" th:field="*{location}"/>
-
+                                        <input type="text" class="form-control" th:field="*{location}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Диагноз:</label>
                                     <div class="col-sm-5">
-
-                                            <input type="text" class="form-control" th:field="*{diagnosis}"/>
-
+                                        <input type="text" class="form-control" th:field="*{diagnosis}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Эвакуировать:</label>
                                     <div class="col-sm-5">
-
-                                            <input type="text" class="form-control" th:field="*{evacuation}"/>
-
+                                        <input type="text" class="form-control" th:field="*{evacuation}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Куда эвакуировали:</label>
                                     <div class="col-sm-5">
-
-                                            <input type="text" class="form-control" th:field="*{place}"/>
-
+                                        <input type="text" class="form-control" th:field="*{place}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Транспорт:</label>
                                     <div class="col-sm-5">
-
-                                            <input type="text" class="form-control" th:field="*{transport}"/>
-
+                                        <input type="text" class="form-control" th:field="*{transport}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Очередь:</label>
                                     <div class="col-sm-5">
-
-                                            <input type="number" min="1" max="3" class="form-control" th:field="*{queue}"/>
-
+                                        <input type="number" min="1" max="3" class="form-control" th:field="*{queue}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Доп.инфо:</label>
+                                    <label for="info" class="col-sm-5 control-label">Доп.инфо:</label>
                                     <div class="col-sm-5">
-
-                                            <input type="text" class="form-control" th:field="*{info}"/>
-
+                                            <textarea class="form-control" rows="5" id="info" th:field="*{info}"></textarea>
                                     </div>
                                 </div>
 
@@ -200,7 +172,6 @@
                             </form>
                         </div>
                     </div>
-
 
 
                     <div id="all" class="tab-pane fade">
