@@ -207,8 +207,65 @@
 
 
                     <div id="all" class="tab-pane fade">
-                        <div align="center" class="container-fluid well">
 
+                        <div class="container-fluid well">
+                            <input class="form-control " id="myInput" type="text" placeholder="Search..">
+                            <br>
+                            <div th:if="${not #lists.isEmpty(medical)}">
+                                <div class="table-responsive">
+                                    <table class="table table-condensed table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th class="invisible">Id</th>
+                                            <th>Время ранения</th>
+                                            <th>Антибиотик</th>
+                                            <th>Сыворотка</th>
+                                            <th>Анатоксин</th>
+                                            <th>Антидот</th>
+                                            <th>Анестетик</th>
+                                            <th>Произведено</th>
+                                            <th>Ранение</th>
+                                            <th>Место ранения</th>
+                                            <th>Диагноз</th>
+                                            <th>Эвакуировать</th>
+                                            <th>Куда эвакуировали</th>
+                                            <th>Транспорт</th>
+                                            <th>Очередь</th>
+                                            <th>Доп.инфо</th>
+                                            <th colspan=2>Действия</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="myTable2">
+                                        <tr th:each="medical : ${medical}">
+                                            <td class="mid invisible" th:text="${medical.id}"></td>
+                                            <td class="mwound_time" th:text="${medical.wound_time}"></td>
+                                            <td class="mantibiotic" th:text="${medical.antibiotic}"></td>
+                                            <td class="mserum" th:text="${medical.serum}"></td>
+                                            <td class="manatoxin" th:text="${medical.anatoxin}"></td>
+                                            <td class="mantidot" th:text="${medical.antidot}"></td>
+                                            <td class="manaesthetic" th:text="${medical.anaesthetic}"></td>
+                                            <td class="mcommit" th:text="${medical.commit}"></td>
+                                            <td class="mwound" th:text="${medical.wound}"></td>
+                                            <td class="mlocation" th:text="${medical.location}"></td>
+                                            <td class="mdiagnosis" th:text="${medical.diagnosis}"></td>
+                                            <td class="mevacuation" th:text="${medical.evacuation}"></td>
+                                            <td class="mplace" th:text="${medical.place}"></td>
+                                            <td class="mtransport" th:text="${medical.transport}"></td>
+                                            <td class="mqueue" th:text="${medical.queue}"></td>
+                                            <td class="minfo" th:text="${medical.info}"></td>
+
+                                            <td><a data-toggle="modal" href="#medmodal"
+                                                   class="edit btn btn-warning">Изменить</a>
+                                            </td>
+                                            <td><a th:href="${'/medical/delete/' + medical.id}"
+                                                   class="btn btn-danger">Удалить</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

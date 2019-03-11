@@ -2,6 +2,7 @@ package com.jwt.service;
 
 import com.jwt.dao.CardDAO;
 import com.jwt.model.Card;
+import com.jwt.model.Medical;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,7 +52,5 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public void addMedtoCard(int cardId, int medId) {
-        cardDAO.addMedtoCard(cardId, medId);
-    }
+    public List<Medical> getByCardId(int cardId){return cardDAO.getByCardId(cardId);}
 }

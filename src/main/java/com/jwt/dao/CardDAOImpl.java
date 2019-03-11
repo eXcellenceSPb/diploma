@@ -48,13 +48,8 @@ public class CardDAOImpl extends AbstractDao<Integer, Card> implements CardDAO {
     }
 
     @Override
-    public void addMedtoCard(int cardId, int medId){
-        Card card = find(cardId);
-        Medical medical = medicalDAO.getMed(medId);
-        List<Medical> med = new ArrayList<>();
-        med.add(medical);
-        card.setMedical(med);
-        merge(card);
+    public List<Medical> getByCardId(int cardId){
+        return new ArrayList<>(find(cardId).getMedical());
     }
 
     @Override

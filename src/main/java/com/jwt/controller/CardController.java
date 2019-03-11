@@ -60,6 +60,8 @@ public class CardController {
     public String getNewm(@PathVariable("id") Integer id, Model model) {
         ids = id;
         model.addAttribute("medAttribute", new Medical());
+        List<Medical> medicals = cardService.getByCardId(id);
+        model.addAttribute("medical", medicals);
         return "addmedical";
     }
 

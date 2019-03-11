@@ -1,6 +1,7 @@
 package com.jwt.service;
 
 import com.jwt.model.Card;
+import com.jwt.model.Medical;
 
 import java.util.List;
 
@@ -19,5 +20,5 @@ public interface CardService {
 
     boolean isExist(String num);
 
-    void addMedtoCard(int cardId, int medId);
+    List<Medical> getByCardId(int cardId);
 }
