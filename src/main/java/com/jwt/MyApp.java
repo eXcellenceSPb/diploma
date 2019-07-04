@@ -8,7 +8,10 @@ import com.jwt.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
+
+import javax.servlet.MultipartConfigElement;
 
 @SpringBootApplication
 public class MyApp {
@@ -20,5 +23,13 @@ public class MyApp {
     @Autowired
     public TestsUsers tests(EmployeeService employeeService, RoleService roleService, CardService cardService, MedicalService medicalService) {
         return new TestsUsers(employeeService, roleService,cardService,medicalService);
+    }
+
+    @Bean
+    public MultipartConfigElement multipartConfigElement() {
+        MultipartConfigFactory factory = new MultipartConfigFactory();
+        factory.setMaxFileSize("128MB");
+        factory.setMaxRequestSize("128MB");
+        return factory.createMultipartConfig();
     }
 }

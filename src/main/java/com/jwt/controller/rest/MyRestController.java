@@ -6,15 +6,16 @@ import com.jwt.model.Personal.Employee;
 import com.jwt.service.CardService;
 import com.jwt.service.EmployeeService;
 import com.jwt.service.MedicalService;
-import com.jwt.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/")
@@ -177,5 +178,26 @@ public class MyRestController {
     @RequestMapping(value = "/med/{id}", method = RequestMethod.DELETE)
     public void deleteMedical(@PathVariable("id") Integer id) {
         medicalService.deleteMed(id);
+    }
+
+
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file) {
+        String name = "test";
+        if (!file.isEmpty()) {
+            try {
+                byte[] bytes = file.getBytes();
+                BufferedOutputStream stream = new BufferedOutputStream(
+                        new FileOutputStream(new File(name + "-uploaded")));
+                stream.write(bytes);
+                stream.close();
+                System.out.println("Вы удачно загрузили " + name + " в " + name + "-uploaded !");
+            } catch (Exception e) {
+                System.out.println("Вам не удалось загрузить " + name + " => " + e.getMessage());
+            }
+        } else {
+            System.out.println("Вам не удалось загрузить " + name + " потому что файл пустой.");
+        }
+        return null;
     }
 }
